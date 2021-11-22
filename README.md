@@ -1,17 +1,18 @@
-# Project Name
+# Tic-Tac-Toe
 
 This repository is a final project (Java GUI) from Object-Oriented Programming Class, Teknik Informatika Universitas Padjadjaran. 
 
 [Challenge Guidelines](challenge-guideline.md)
 
-**Please create a description for this project here**
+<!-- **Please create a description for this project here** -->
+Tic-tac-toe adalah permainan kertas dan pensil untuk dua pemain, X dan O, yang bergiliran menandai ruang dalam grid 3 × 3. Pemain yang berhasil menempatkan tiga tanda mereka di baris horisontal, vertikal, atau diagonal memenangkan pertandingan.
 
 ## Credits
-| NPM           | Name        |
-| ------------- |-------------|
-| 140810xx00xx  | John Doe    |
-| 140810xx00xx  | Jane Doe    |
-| 140810xx00xx  | Lorem Ipsum |
+| NPM           | Name                      |
+| ------------- |---------------------------|
+| 140810200035  | Naufal Fahrezi            |
+| 140810200053  | Calvin Calfi Montolalu    |
+| 140810200059  | Deani Puteri Virdiana     |
 
 ## Change log
 - **[Sprint Planning](changelog/sprint-planning.md) - (planning date)** 
