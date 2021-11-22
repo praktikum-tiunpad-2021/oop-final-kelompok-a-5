@@ -3,12 +3,27 @@
  */
 package game;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+public class App extends Application {
+    private final int WINDOW_WIDTH=640;
+    private final int WINDOW_HEIGHT=480;
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        launch();
+    }
+
+    @Override
+    public void start(Stage stage) {
+        GridPane root=new GridPane();
+
+        Scene scn=new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+        stage.setTitle("Tic Tac Toe");
+        stage.setScene(scn);
+        stage.show();
     }
 }
