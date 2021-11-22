@@ -15,21 +15,30 @@ Tic-tac-toe adalah permainan kertas dan pensil untuk dua pemain, X dan O, yang b
 | 140810200059  | Deani Puteri Virdiana     |
 
 ## Change log
-- **[Sprint Planning](changelog/sprint-planning.md) - (planning date)** 
-   -  Short changes 1
-   - Short changes 2
+- **[Sprint Planning](changelog/sprint-planning.md) - (16/11/2021)** 
+   - Mendiskusikan changelog
 
-- **[Sprint 1](changelog/sprint-1.md) - (date from x until x)** 
-   - Short changes 1
-   - Short changes 2
+- **[Sprint 1](changelog/sprint-1.md) - (16/11/2021 - 22/11/2021)** 
+   - Inisiasikan JavaFX dan Gradle
+   - Inisiasikan ukuran dan komponen window
+   - Inisiasikan board pada window
+   - Membuat class User
 
-- **[Sprint 2](changelog/sprint-2.md) - (date from x until x)** 
-   - Short changes 1
-   - Short changes 2
+- **[Sprint 2](changelog/sprint-2.md) - (23/11/2021 - 29/11/2021)** 
+   - Membuat class Player
+   - Membuat class AI
+   - Membuat logic memilih board untuk User
+   - Membuat logic merubah tanda setelah User lain memilih
+   - Membuat logic kemenangan
+   - Merapihkan UI board
    
-- **[Sprint 3](changelog/sprint-3.md) - (date from x until x)** 
-   - Short changes 1
-   - Short changes 2
+- **[Sprint 3](changelog/sprint-3.md) - (30/11/2021 - 06/12/2021)** 
+   - Menambahkan UML fix
+   - Melakukan bug fixing
+   - Membuat menu utama
+   - Membuat logic menginput username
+   - Membuat logic leaderboard
+   - Membuat leaderboard
 
 ## Running The App
 
