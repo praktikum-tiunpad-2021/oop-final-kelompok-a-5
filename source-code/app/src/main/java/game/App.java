@@ -4,9 +4,13 @@
 package game;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -20,6 +24,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         GridPane root=new GridPane();
+        Board board=new Board();
+        GridPane tttBoard=board.create(stage);
+
+        root.addRow(1, tttBoard);
 
         Scene scn=new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         stage.setTitle("Tic Tac Toe");
