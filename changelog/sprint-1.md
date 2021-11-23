@@ -1,7 +1,7 @@
 # Scrum Report (Sprint 1)
 | From 16/11/2021 to 22/11/2021
 
-## Team
+## Team CDF
 | NPM           | Name                      |
 | ------------- |-------------------------- |
 | 140810200035  | Naufal Fahrezi            |
