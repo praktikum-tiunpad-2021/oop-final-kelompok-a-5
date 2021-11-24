@@ -20,7 +20,7 @@ public class Board {
                 tile.setFill(Color.WHITESMOKE);
                 tile.setStroke(Color.BLACK);
 
-                final int index=(i*3)+j;
+                final int index=i+(j*3);
 
                 board.add(tile, i, j);
                 tile.setOnMouseClicked(new EventHandler<MouseEvent>() {
