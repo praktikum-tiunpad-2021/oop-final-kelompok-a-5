@@ -5,7 +5,9 @@ package game;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -23,11 +25,23 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
+        Player player1=new Player();
         GridPane root=new GridPane();
         Board board=new Board();
-        GridPane tttBoard=board.create(stage);
+        GridPane tttBoard=board.create(stage, player1);
+        Button checkPlayerValue=new Button("Check");
 
         root.addRow(1, tttBoard);
+        root.addRow(2, checkPlayerValue);
+
+        checkPlayerValue.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent evnt) {
+                for(Integer i: player1.getPick()) {
+                    System.out.println(i);
+                }
+            }
+        });
 
         Scene scn=new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         stage.setTitle("Tic Tac Toe");

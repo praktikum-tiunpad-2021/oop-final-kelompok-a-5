@@ -1,13 +1,19 @@
 package game;
 
+import java.util.Vector;
+
 public class User {
-    private int[] pick;
+    private Vector<Integer> pick;
 
     User() {
-        this.pick=new int[9];
+        this.pick=new Vector<Integer>();
     }
 
-    public void setPick(int value, int index) {
-        this.pick[index]=value; 
+    public void setPick(int value) {
+        pick.add(value);
+    }
+
+    public Vector<Integer> getPick() {
+        return pick;
     }
 }

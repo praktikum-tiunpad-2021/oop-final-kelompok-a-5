@@ -11,40 +11,23 @@ import javafx.scene.input.MouseEvent;
 public class Board {
     private final int size=3;
 
-    Board() {
+    public GridPane create(Stage stage, User user) {
         GridPane board=new GridPane();
-        
-        for(int i=0; i<3; i++) {
-            for(int j=0; j<3; j++) {
+
+        for(int i=0; i<this.size; i++) {
+            for(int j=0; j<this.size; j++) {
                 Rectangle tile=new Rectangle(50, 50);
                 tile.setFill(Color.WHITESMOKE);
                 tile.setStroke(Color.BLACK);
+
+                final int index=(i*3)+j;
 
                 board.add(tile, i, j);
                 tile.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
                         tile.setFill(Color.RED);
-                    }
-                });
-            }
-        }
-    }
-
-    public GridPane create(Stage stage) {
-        GridPane board=new GridPane();
-
-        for(int i=0; i<3; i++) {
-            for(int j=0; j<3; j++) {
-                Rectangle tile=new Rectangle(50, 50);
-                tile.setFill(Color.WHITESMOKE);
-                tile.setStroke(Color.BLACK);
-
-                board.add(tile, i, j);
-                tile.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        tile.setFill(Color.RED);
+                        user.setPick(index);
                     }
                 });
             }
