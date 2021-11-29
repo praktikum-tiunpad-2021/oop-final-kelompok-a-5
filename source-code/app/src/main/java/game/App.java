@@ -25,23 +25,25 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        Player player1=new Player();
         GridPane root=new GridPane();
         Board board=new Board();
-        GridPane tttBoard=board.create(stage, player1);
+        GridPane tttBoard=board.create(stage);
         Button checkPlayerValue=new Button("Check");
+        // Label currentPlayer=new Label(player1.getUsername());
+
 
         root.addRow(1, tttBoard);
         root.addRow(2, checkPlayerValue);
+        // root.addColumn(1, currentPlayer);
 
-        checkPlayerValue.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent evnt) {
-                for(Integer i: player1.getPick()) {
-                    System.out.println(i);
-                }
-            }
-        });
+        // checkPlayerValue.setOnAction(new EventHandler<ActionEvent>() {
+        //     @Override
+        //     public void handle(ActionEvent evnt) {
+        //         for(Integer i: player1.getPick()) {
+        //             System.out.println(i);
+        //         }
+        //     }
+        // });
 
         Scene scn=new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         stage.setTitle("Tic Tac Toe");
