@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Vector;
+
 import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -14,9 +16,11 @@ public class Board {
     private final int size=3;
     private Image X;
     private Image O;
-    User player1;
-    User player2;
-    User currUser;
+    private Vector<Tile> tiles;
+    private User player1;
+    private User player2;
+    private User currUser;
+    private String winner;
 
     Board() {
         this.player1=new User("Player1");
@@ -24,6 +28,8 @@ public class Board {
         this.X=new Image("symbols/x.png");
         this.O=new Image("symbols/o.png");
         this.currUser=this.player1;
+        this.tiles=new Vector<Tile>();
+        this.winner="";
     }
 
     public void setPlayer1(User player1) {
@@ -38,6 +44,14 @@ public class Board {
         this.currUser = currUser;
     }
 
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+
+    public void setTiles(Vector<Tile> tiles) {
+        this.tiles = tiles;
+    }
+
     public User getPlayer1() {
         return player1;
     }
@@ -50,16 +64,23 @@ public class Board {
         return currUser;
     }
 
+    public String getWinner() {
+        return winner;
+    }
+
+    public Vector<Tile> getTiles() {
+        return tiles;
+    }
+
     public GridPane create(Stage stage) {
         GridPane board=new GridPane();
-
         for(int i=0; i<this.size; i++) {
             for(int j=0; j<this.size; j++) {
-                Rectangle tile=new Rectangle(50, 50);
+                final int index=i+(j*3);
+                Tile tile=new Tile(String.valueOf(index), 50, 50);
                 tile.setFill(Color.WHITESMOKE);
                 tile.setStroke(Color.BLACK);
 
-                final int index=i+(j*3);
 
                 board.add(tile, i, j);
                 tile.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -67,33 +88,91 @@ public class Board {
                     public void handle(MouseEvent event) {
                         if(currUser==player1) {
                             tile.setFill(new ImagePattern(X));
+                            tile.setValue("X");
                             player1.setPick(index);
+                            setWinner(player1.getTitle());
                             setCurrUser(player2);
                         } else {
                             tile.setFill(new ImagePattern(O));
+                            tile.setValue("O");
                             player2.setPick(index);
+                            setWinner(player2.getTitle());
                             setCurrUser(player1);
                         }
+                        tile.setDisable(true);
+
+                        Scenes scene=new Scenes(stage);
+
+                        if(gameIsFinished() == 1) {
+                            System.out.println("Winner: " + winner);
+                            scene.winningMenu();
+                        } else if(gameIsFinished() == -1) {
+                            System.out.println("Tie");
+                            setWinner("None");
+                            // scene.winningMenu();
+                        }
                     }
-                });
+                });           
+                tiles.add(tile);
             }
         }
         return board;
     }
 
-    public boolean hasBeenPicked(Rectangle tile) {
+    public int gameIsFinished() {
+        /*
+        1 (0) | 2 (1) | 3 (2)
+        4 (3) | 5 (4) | 6 (5)
+        7 (6) | 8 (7) | 9 (8)
+        */
+
+        // if(lineWinning(0,1,2)) {
+        //     return 1;
+        // } else if(lineWinning(3,4,5)) {
+        //     return 1;
+        // } else if(lineWinning(6,7,8)) {
+        //     return 1;
+        // } else if(lineWinning(0,3,6)) {
+        //     return 1;
+        // } else if(lineWinning(1,4,7)) {
+        //     return 1;
+        // } else if(lineWinning(2,5,8)) {
+        //     return 1;
+        // } else if(lineWinning(0,4,8)) {
+        //     return 1;
+        // } else if(lineWinning(2,4,6)) {
+        //     return 1;
+        // } else if() {
+
+        // }
+        // return 0;
         return (
-            tile.getFill() == Color.RED
-            ||
-            tile.getFill() == Color.BLUE
+            lineWinning(0,1,2) ? 1 : lineWinning(3,4,5) ? 1 : lineWinning(6,7,8) ? 1 // Horizontal
+            :
+            lineWinning(0,3,6) ? 1 : lineWinning(1,4,7) ? 1 : lineWinning(2,5,8) ? 1 // Vertical
+            :
+            lineWinning(0,4,8) ? 1 : lineWinning(2,4,6) ? 1 // Diagonal
+            :
+            allIsPicked() ? -1 // Tie
+            :
+            0 // Still running
         );
     }
 
-    // public void changePlayer(User currUser) {
-    //     if(currUser==player1) {
-    //         currUser=player2;
-    //     } else {
-    //         currUser=player1;
-    //     }
-    // }
+    public boolean lineWinning(int tile1, int tile2, int tile3) {
+        return (
+            this.tiles.get(tile1).getValue() == this.tiles.get(tile2).getValue()
+            &&
+            this.tiles.get(tile2).getValue() == this.tiles.get(tile3).getValue()
+        );
+    }
+
+    public boolean allIsPicked() {
+        for(int i=0; i<this.tiles.size(); i++) {
+            if(this.tiles.get(i).getValue() == String.valueOf(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
