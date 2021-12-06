@@ -1,11 +1,6 @@
 package game;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Vector;
-import javafx.scene.paint.Color;
-
-
 
 public class User {
     private Vector<Integer> pick;
@@ -18,7 +13,6 @@ public class User {
 
     User(String title) {
         this.pick=new Vector<Integer>();
-        
         this.title=title;
     }
 

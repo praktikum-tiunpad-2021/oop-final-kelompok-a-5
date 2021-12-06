@@ -1,19 +1,13 @@
 package game;
 
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -37,13 +31,19 @@ class Scenes {
 
         GridPane header=new GridPane();
         Label title=new Label("TIC TAC TOE");
+        title.setFont(new Font("Calibri", 24));
         Label oleh=new Label("Oleh Fahrezi, Calvin, Dean");
+        oleh.setFont(new Font("Calibri", 18));
         header.addRow(1, title);
         header.addRow(2, oleh);
 
         GridPane main=new GridPane();
+        int mainButtonWidth=100;
+        int mainButtonHeight=30;
         Button play=new Button("Play");
+        play.setPrefSize(mainButtonWidth, mainButtonHeight);
         Button exit=new Button("Exit");
+        exit.setPrefSize(mainButtonWidth, mainButtonHeight);
         play.setOnMouseClicked(new EventHandler<Event>() {
             @Override
             public void handle(Event event) {
@@ -77,7 +77,6 @@ class Scenes {
 
         GridPane main=new GridPane();
         GridPane tttBoard=this.board.create(this.stage);
-        Button checkPlayerValue=new Button("Check");
 
         GridPane playerSymbols=new GridPane();
         Label player1Symbol=new Label("Player 1: X");
@@ -95,13 +94,6 @@ class Scenes {
         main.addColumn(2, playerSymbols);
 
         root.addRow(1, main);
-        // root.addRow(2, checkPlayerValue);
-        // checkPlayerValue.setOnMouseClicked(new EventHandler<Event>() {
-        //     @Override
-        //     public void handle(Event event) {
-        //         System.out.println(board.gameIsFinished());
-        //     };
-        // });
 
         Scene scn=new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         stage.setTitle("Tic Tac Toe");
@@ -121,11 +113,10 @@ class Scenes {
         
         if(board.getWinner() == "None") {
             Label tieLabel=new Label("It is a tie");
-            
             winnerPanel.addRow(1, tieLabel);
         } else {
             Label winnerLabel=new Label("Winner of the game");
-            System.out.println(this.board.getPlayer1().getTitle());
+            System.out.println(this.board.getWinner());
             Label winner=new Label(this.board.getWinner());
 
             winnerPanel.addRow(1, winnerLabel);

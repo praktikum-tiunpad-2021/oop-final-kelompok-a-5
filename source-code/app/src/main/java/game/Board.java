@@ -6,9 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
@@ -77,10 +75,11 @@ public class Board {
         for(int i=0; i<this.SIZE; i++) {
             for(int j=0; j<this.SIZE; j++) {
                 final int index=i+(j*3);
-                Tile tile=new Tile(String.valueOf(index), 50, 50);
+                int tileWidth=100;
+                int tileHeight=100;
+                Tile tile=new Tile(String.valueOf(index), tileWidth, tileHeight);
                 tile.setFill(Color.WHITESMOKE);
                 tile.setStroke(Color.BLACK);
-
 
                 board.add(tile, i, j);
                 tile.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -109,7 +108,7 @@ public class Board {
                         } else if(gameIsFinished() == -1) {
                             System.out.println("Tie");
                             setWinner("None");
-                            // scene.winningMenu();
+                            scene.winningMenu();
                         }
                     }
                 });           
@@ -125,37 +124,17 @@ public class Board {
         4 (3) | 5 (4) | 6 (5)
         7 (6) | 8 (7) | 9 (8)
         */
-
-        if(lineWinning(0,1,2)) {
-            return 1;
-        } else if(lineWinning(3,4,5)) {
-            return 1;
-        } else if(lineWinning(6,7,8)) {
-            return 1;
-        } else if(lineWinning(0,3,6)) {
-            return 1;
-        } else if(lineWinning(1,4,7)) {
-            return 1;
-        } else if(lineWinning(2,5,8)) {
-            return 1;
-        } else if(lineWinning(0,4,8)) {
-            return 1;
-        } else if(lineWinning(2,4,6)) {
-            return 1;
-        } else if(allIsPicked()) {
-            return -1;
-        } return 0;
-        // return (
-        //     lineWinning(0,1,2) ? 1 : lineWinning(3,4,5) ? 1 : lineWinning(6,7,8) ? 1 // Horizontal
-        //     :
-        //     lineWinning(0,3,6) ? 1 : lineWinning(1,4,7) ? 1 : lineWinning(2,5,8) ? 1 // Vertical
-        //     :
-        //     lineWinning(0,4,8) ? 1 : lineWinning(2,4,6) ? 1 // Diagonal
-        //     :
-        //     allIsPicked() ? -1 // Tie
-        //     :
-        //     0 // Still running
-        // );
+        return (
+            lineWinning(0,1,2) ? 1 : lineWinning(3,4,5) ? 1 : lineWinning(6,7,8) ? 1 // Horizontal
+            :
+            lineWinning(0,3,6) ? 1 : lineWinning(1,4,7) ? 1 : lineWinning(2,5,8) ? 1 // Vertical
+            :
+            lineWinning(0,4,8) ? 1 : lineWinning(2,4,6) ? 1 // Diagonal
+            :
+            !allIsPicked() ? -1 // Tie
+            :
+            0 // Still running
+        );
     }
 
     public boolean lineWinning(int tile1, int tile2, int tile3) {
