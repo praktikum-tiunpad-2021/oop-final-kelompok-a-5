@@ -20,8 +20,8 @@ import javafx.stage.Stage;
 class Scenes {
     private final int WINDOW_WIDTH=640;
     private final int WINDOW_HEIGHT=480;
-    private final Stage stage;
-    private final Board board;
+    private Stage stage;
+    private Board board;
 
     Scenes(Stage stage) {
         this.board=new Board();
